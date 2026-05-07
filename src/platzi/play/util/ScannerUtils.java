@@ -14,6 +14,11 @@ public class ScannerUtils {
     }
     public static int capturarnumero (String mensaje) {
         System.out.println(mensaje + ": ");
+        while (!SCANNER.hasNextInt()){
+            System.out.println("Dato no aceptado. " + mensaje + ": ");
+            SCANNER.next();
+        }
+
         int dato = SCANNER.nextInt();
         SCANNER.nextLine();
         return dato;
@@ -21,6 +26,11 @@ public class ScannerUtils {
 
     public static double capturardecimal (String mensaje) {
         System.out.println(mensaje + ": ");
+        while (!SCANNER.hasNextDouble()){
+            System.out.println("Dato no aceptado. " + mensaje + ": ");
+            SCANNER.next();
+        }
+
         double dato = SCANNER.nextDouble();
         SCANNER.nextLine();
         return dato;

@@ -15,8 +15,9 @@ public class Persona {
         this.nacionalidad = nacionalidad;
         this.validaredad(edad);
         this.fecha_registro = LocalDate.now();
-
     }
+
+
     public String mostrar_informacion(){
         return "Nombre: " + nombre + "\n" +
                 "Apellido: " + apellido + "\n" +
