@@ -7,6 +7,7 @@ import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannerUtils;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Scanner;
 
 
@@ -20,6 +21,16 @@ public class Main {
     public static final int SALIR = 5;
     public static void main(String[] args) {
         Plataforma plataforma = new Plataforma("NETFLIX");
+
+        Usuario usuario =  new Usuario("David", "dpulgarin437@gmail.com");System.out.println(usuario.getNombre());
+
+        Pelicula pelicula1 = new Pelicula("Harry potter", "es de magia", 200, "Fantasia",LocalDate.now(), 4.5, true);
+        Pelicula pelicula2 = new Pelicula("Hombre Araña", "es de accion", 220, "Accion",LocalDate.now(), 5, true);
+        Pelicula pelicula3 = new Pelicula("titanic", "es de amor", 300, "Drama",LocalDate.now(), 4, true);
+
+        plataforma.agregar(pelicula1);
+        plataforma.agregar(pelicula2);
+        plataforma.agregar(pelicula3);
 
         while (true) {
             System.out.println(
@@ -57,7 +68,8 @@ public class Main {
 
                 }
                 case BUSCAR_TITULO -> {
-                    //falta
+                    String titulo_ingresado =  ScannerUtils.capturartexto("Ingrese el titulo que quiere buscar");
+                    plataforma.buscarpelicula(titulo_ingresado);
                 }
                 case ELIMINAR -> {
                     //falta
@@ -68,6 +80,9 @@ public class Main {
                 }
             }
         }
+
+
+
 
 
 
