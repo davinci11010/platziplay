@@ -39,6 +39,17 @@ public class Plataforma {
         }
     }
 
+    public void eliminarpelicula (String nombrepelicula) {
+        String registronombrepelicula = "";
+        for (int i = 0 ; i < contenido.size(); i++) {
+            if (nombrepelicula.equals(contenido.get(i).getTitulo())){
+                registronombrepelicula = contenido.get(i).getTitulo();
+                contenido.remove(contenido.get(i));
+            }
+        }
+        System.out.println("LA PELICULA (" + registronombrepelicula + ") HA SIDO ELIMINADA DE LA BASE DE DATOS🔵");
+
+    }
 
     public void mostrartitulos(){
         for (int i = 0; i < contenido.size(); i++) {

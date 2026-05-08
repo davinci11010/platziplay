@@ -34,7 +34,7 @@ public class Main {
 
         while (true) {
             System.out.println(
-                    "1 ) Agregar contenido" + "\n" +
+                    "1) Agregar contenido" + "\n" +
                             "2) Mostrar todo " + "\n" +
                             "3) Buscar por titulo" + "\n" +
                             "4) Eliminar" + " \n" +
@@ -72,7 +72,8 @@ public class Main {
                     plataforma.buscarpelicula(titulo_ingresado);
                 }
                 case ELIMINAR -> {
-                    //falta
+                    String titulo_ingresado_eliminar = ScannerUtils.capturartexto("Ingrese el nombre de la pelicula que va a eliminar");
+                    plataforma.eliminarpelicula(titulo_ingresado_eliminar);
                 }
                 case SALIR -> {
                     System.exit(0);
