@@ -52,9 +52,10 @@ public class Plataforma {
     }
 
     public void mostrartitulos(){
-        for (int i = 0; i < contenido.size(); i++) {
-            System.out.println(contenido.get(i).getTitulo());
+        for (Pelicula pelicula : contenido) {
+            System.out.println(pelicula.getTitulo());
         }
+
     }
 
     //GETTERS
@@ -65,5 +66,9 @@ public class Plataforma {
     public List<Pelicula> getcontenido() {
         return contenido;
     }
+
+
+
+
 
 }

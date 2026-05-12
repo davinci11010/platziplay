@@ -27,10 +27,10 @@ public class Main {
         Pelicula pelicula1 = new Pelicula("Harry potter", "es de magia", 200, "Fantasia",LocalDate.now(), 4.5, true);
         Pelicula pelicula2 = new Pelicula("Hombre Araña", "es de accion", 220, "Accion",LocalDate.now(), 5, true);
         Pelicula pelicula3 = new Pelicula("titanic", "es de amor", 300, "Drama",LocalDate.now(), 4, true);
-
         plataforma.agregar(pelicula1);
         plataforma.agregar(pelicula2);
         plataforma.agregar(pelicula3);
+
 
         while (true) {
             System.out.println(
