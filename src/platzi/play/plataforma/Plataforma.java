@@ -50,12 +50,17 @@ public class Plataforma {
         return ficha_pelicula_encontrada;
     }
 
+    //TERCERA INSTANCIA
+    public void mostrarportitulosplatzi (String titulo){
+        contenido.forEach(i -> System.out.println(i.getTitulo()));
+    }
 
-    public ArrayList<String> buscarporgenero (String genero){
-        ArrayList<String>listapeliculasgenero = new ArrayList<>();
+
+    public ArrayList<Pelicula> buscarporgenero (String genero){
+        ArrayList<Pelicula>listapeliculasgenero = new ArrayList<>();
         for (int i = 0 ; i < contenido.size(); i++){
             if (contenido.get(i).getGenero().equals(genero)){
-                listapeliculasgenero.add(contenido.get(i).getTitulo());
+                listapeliculasgenero.add(contenido.get(i));
             }
         }
         return listapeliculasgenero;
@@ -77,20 +82,12 @@ public class Plataforma {
         for (Pelicula pelicula : contenido) {
             System.out.println(pelicula.getTitulo());
         }
-
     }
-
     //GETTERS
     public String getNombre(){
         return  nombre;
     }
-
     public List<Pelicula> getcontenido() {
         return contenido;
     }
-
-
-
-
-
 }
