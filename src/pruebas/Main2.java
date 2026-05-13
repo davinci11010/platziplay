@@ -1,5 +1,6 @@
 package pruebas;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Main2 {
@@ -12,6 +13,13 @@ public class Main2 {
         for (String contenedorNombre : contenedor_nombres) {
             System.out.println(contenedorNombre);
         }
+
+        ArrayList<String> nombresciudades = new ArrayList<>();
+        nombresciudades.add("Medellin");
+        nombresciudades.add("Bogota");
+
+        System.out.println(nombresciudades);
+
 
 
     }

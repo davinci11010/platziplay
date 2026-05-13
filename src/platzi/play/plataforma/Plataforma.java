@@ -51,6 +51,16 @@ public class Plataforma {
     }
 
 
+    public ArrayList<String> buscarporgenero (String genero){
+        ArrayList<String>listapeliculasgenero = new ArrayList<>();
+        for (int i = 0 ; i < contenido.size(); i++){
+            if (contenido.get(i).getGenero().equals(genero)){
+                listapeliculasgenero.add(contenido.get(i).getTitulo());
+            }
+        }
+        return listapeliculasgenero;
+    }
+
     public void eliminarpelicula (String nombrepelicula) {
         String registronombrepelicula = "";
         for (int i = 0 ; i < contenido.size(); i++) {

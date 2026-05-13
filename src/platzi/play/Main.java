@@ -19,6 +19,7 @@ public class Main {
     public static final int BUSCAR_TITULO = 3;
     public static final int ELIMINAR = 4;
     public static final int SALIR = 5;
+    public static final int BUSCAR_GENERO = 6;
     public static void main(String[] args) {
         Plataforma plataforma = new Plataforma("NETFLIX");
 
@@ -27,9 +28,12 @@ public class Main {
         Pelicula pelicula1 = new Pelicula("Harry potter", "es de magia", 200, "Fantasia",LocalDate.now(), 4.5, true);
         Pelicula pelicula2 = new Pelicula("Hombre Araña", "es de accion", 220, "Accion",LocalDate.now(), 5, true);
         Pelicula pelicula3 = new Pelicula("titanic", "es de amor", 300, "Drama",LocalDate.now(), 4, true);
+        Pelicula pelicula4 = new Pelicula("Avengers", "es de accion", 220, "Accion",LocalDate.now(), 5, true);
         plataforma.agregar(pelicula1);
         plataforma.agregar(pelicula2);
         plataforma.agregar(pelicula3);
+        plataforma.agregar(pelicula4);
+
 
 
         while (true) {
@@ -38,7 +42,8 @@ public class Main {
                             "2) Mostrar todo " + "\n" +
                             "3) Buscar por titulo" + "\n" +
                             "4) Eliminar" + " \n" +
-                            "5) Salir" + "\n");
+                            "5) Salir" + "\n" +
+                            "6) Buscar por genero");
             int opcion = ScannerUtils.capturarnumero("Ingresa la opcion");
             System.out.println("Opcion elegida: " + opcion);
 
@@ -83,6 +88,12 @@ public class Main {
                     System.exit(0);
 
                 }
+                case BUSCAR_GENERO -> {
+                    String generobuscar = ScannerUtils.capturartexto("Ingrese el genero que quiere buscar");
+                    System.out.println(plataforma.buscarporgenero(generobuscar));
+                }
+
+
             }
         }
 
