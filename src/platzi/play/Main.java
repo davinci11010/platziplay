@@ -69,7 +69,11 @@ public class Main {
                 }
                 case BUSCAR_TITULO -> {
                     String titulo_ingresado =  ScannerUtils.capturartexto("Ingrese el titulo que quiere buscar");
-                    plataforma.buscarpelicula(titulo_ingresado);
+                    if(plataforma.buscarpeliculamejorado(titulo_ingresado) == null){
+                        System.out.println("❌❌LA PELICULA NO SE ENCUENTRA EN LA BASE DE DATOS❌❌");
+                    } else {
+                        System.out.println(plataforma.buscarpeliculamejorado(titulo_ingresado));
+                    }
                 }
                 case ELIMINAR -> {
                     String titulo_ingresado_eliminar = ScannerUtils.capturartexto("Ingrese el nombre de la pelicula que va a eliminar");

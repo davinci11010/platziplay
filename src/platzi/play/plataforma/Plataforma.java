@@ -23,6 +23,7 @@ public class Plataforma {
         this.contenido.remove(elemento);
     }
 
+    //PRIMERA INSTANCIA
     public void buscarpelicula (String nombrepelicula) {
         int cantidad_peliculas_almacenadas = contenido.size();
         int cantidad_iteracion_busqueda = 0;
@@ -38,6 +39,17 @@ public class Plataforma {
             System.out.println("❌❌LA PELICULA NO SE ENCUENTRA EN LA BASE DE DATOS❌❌");
         }
     }
+    //SEGUNDA INSTANCIA
+    public String buscarpeliculamejorado(String nombre_pelicula) {
+        String ficha_pelicula_encontrada = null;
+        for (int i = 0; i < contenido.size(); i++) {
+            if (contenido.get(i).getTitulo().equals(nombre_pelicula)) {
+                ficha_pelicula_encontrada = contenido.get(i).obtenerFichaTecnica();
+            }
+        }
+        return ficha_pelicula_encontrada;
+    }
+
 
     public void eliminarpelicula (String nombrepelicula) {
         String registronombrepelicula = "";
