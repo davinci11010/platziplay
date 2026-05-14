@@ -8,6 +8,7 @@ import platzi.play.util.ScannerUtils;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -19,6 +20,9 @@ public class Main {
     public static final int MOSTRAR_TODO = 2;
     public static final int BUSCAR_TITULO = 3;
     public static final int BUSCAR_GENERO = 4;
+    public static final int VER_POPULARES = 5;
+    public static final int VER_PELICULA_MAYOR_DURACION = 6;
+    public static final int VER_PELICULA_MENOR_DURACION = 7;
     public static final int ELIMINAR = 8;
     public static final int SALIR = 9;
 
@@ -31,11 +35,14 @@ public class Main {
         Pelicula pelicula1 = new Pelicula("Harry potter", "es de magia", 200, "Fantasia",LocalDate.now(), 4.5, true);
         Pelicula pelicula2 = new Pelicula("Hombre Araña", "es de accion", 220, "Accion",LocalDate.now(), 5, true);
         Pelicula pelicula3 = new Pelicula("titanic", "es de amor", 300, "Drama",LocalDate.now(), 4, true);
-        Pelicula pelicula4 = new Pelicula("Avengers", "es de accion", 220, "Accion",LocalDate.now(), 5, true);
+        Pelicula pelicula4 = new Pelicula("Avengers", "es de accion", 330, "Accion",LocalDate.now(), 5, true);
         plataforma.agregar(pelicula1);
         plataforma.agregar(pelicula2);
         plataforma.agregar(pelicula3);
         plataforma.agregar(pelicula4);
+
+        //plataforma.getpopulares();
+
 
         //System.out.println(plataforma.getduraciontotal());
         System.out.println("Mas de " + plataforma.getduracionplatzi() + " Minutos de contenido!");
@@ -47,6 +54,9 @@ public class Main {
                             "2) Mostrar todo " + "\n" +
                             "3) Buscar por titulo" + "\n" +
                             "4) Buscar por genero" + "\n" +
+                            "5) Ver Populares" + "\n" +
+                            "6) Ver Pelicula con mayor duracion" + "\n" +
+                            "7) Ver Pelicula con menor duracion" + "\n" +
                             "8) Eliminar" + " \n" +
                             "9) Salir" + "\n");
             int opcion = ScannerUtils.capturarnumero("Ingresa la opcion");
@@ -91,6 +101,16 @@ public class Main {
                     for (int i = 0 ; i < plataforma.buscarporgenero(generobuscar).size() ; i ++){
                         System.out.println(plataforma.buscarporgenero(generobuscar).get(i).obtenerFichaTecnica());
                     }
+                }
+                case VER_POPULARES -> {
+                    List<Pelicula> contenidoPopulares = plataforma.getPopularesplatzi();
+                    contenidoPopulares.forEach(pelicula -> System.out.println(pelicula.obtenerFichaTecnica()));
+                }
+                case VER_PELICULA_MAYOR_DURACION -> {
+                    System.out.println(plataforma.get_pelicula_mas_larga());
+                }
+                case VER_PELICULA_MENOR_DURACION -> {
+                    System.out.println(plataforma.get_pelicula_mas_corta());
                 }
                 case ELIMINAR -> {
                     String titulo_ingresado_eliminar = ScannerUtils.capturartexto("Ingrese el nombre de la pelicula que va a eliminar");

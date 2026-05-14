@@ -3,8 +3,7 @@ package platzi.play.plataforma;
 
 import platzi.play.contenido.Pelicula;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Plataforma {
     private String nombre;
@@ -87,6 +86,59 @@ public class Plataforma {
     public List<String> mostrartitulosconstream(){
         return contenido.stream().map(pelicula -> pelicula.getTitulo()).toList();
     }
+
+    public void getpopulares(){
+        ArrayList<Pelicula> contenido_copia = (ArrayList<Pelicula>) contenido;
+        ArrayList<Pelicula> lista_organizada = new ArrayList<>();
+        ArrayList<Double> listatemporal = new ArrayList<>();
+        int cantidad_peliculas = contenido_copia.size();
+        for (int i = 0 ; i < contenido.size(); i++){
+            listatemporal.add(contenido.get(i).getCalificacion());
+        }
+        double mayor = Collections.max(listatemporal);
+        // CONTINUARA
+    }
+
+    public List<Pelicula> getPopularesplatzi (){
+        return contenido.stream().sorted(Comparator.comparingDouble(Pelicula::getCalificacion).reversed()).toList();
+    }
+
+    public String get_pelicula_mas_larga () {
+        ArrayList<Integer> lista_contenedora_duraciones = new ArrayList<>();
+        String pelicula_mayor_duracion = "";
+        for (int i = 0 ; i < contenido.size(); i++){
+            lista_contenedora_duraciones.add(contenido.get(i).getDuracion());
+        }
+        int mayor = Collections.max(lista_contenedora_duraciones);
+        for (int j =  0 ; j < contenido.size(); j++){
+            if (contenido.get(j).getDuracion() == mayor){
+                System.out.println("--PELICULA CON MAYOR DURACION--");
+                pelicula_mayor_duracion = contenido.get(j).obtenerFichaTecnica();
+            } else {
+                continue;
+            }
+        }
+        return pelicula_mayor_duracion;
+
+    }
+
+    public String get_pelicula_mas_corta () {
+        ArrayList<Integer> lista_contenedora_duraciones = new ArrayList<>();
+        String pelicula_menor_duracion = "";
+        for (int i = 0 ; i < contenido.size(); i++){
+            lista_contenedora_duraciones.add(contenido.get(i).getDuracion());
+        }
+        int mayor = Collections.min(lista_contenedora_duraciones);
+        for (int j =  0 ; j < contenido.size(); j++){
+            if (contenido.get(j).getDuracion() == mayor){
+                System.out.println("--PELICULA CON MENOR DURACION--");
+                pelicula_menor_duracion = contenido.get(j).obtenerFichaTecnica();
+            }
+        }
+        return pelicula_menor_duracion;
+
+    }
+
 
     public int getduraciontotal () {
         int suma = 0;
