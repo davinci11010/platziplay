@@ -26,7 +26,7 @@ public class Main {
         Plataforma plataforma = new Plataforma(nombre_plataforma);
 
         Usuario usuario =  new Usuario("David", "dpulgarin437@gmail.com");
-        System.out.println(nombre_plataforma + "🍿");
+        System.out.println(nombre_plataforma + "🍿 v" + VERSION);
 
         Pelicula pelicula1 = new Pelicula("Harry potter", "es de magia", 200, "Fantasia",LocalDate.now(), 4.5, true);
         Pelicula pelicula2 = new Pelicula("Hombre Araña", "es de accion", 220, "Accion",LocalDate.now(), 5, true);
@@ -36,6 +36,10 @@ public class Main {
         plataforma.agregar(pelicula2);
         plataforma.agregar(pelicula3);
         plataforma.agregar(pelicula4);
+
+        //System.out.println(plataforma.getduraciontotal());
+        System.out.println("Mas de " + plataforma.getduracionplatzi() + " Minutos de contenido!");
+
 
         while (true) {
             System.out.println(

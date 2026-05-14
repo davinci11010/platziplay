@@ -83,6 +83,23 @@ public class Plataforma {
             System.out.println(pelicula.getTitulo());
         }
     }
+
+    public List<String> mostrartitulosconstream(){
+        return contenido.stream().map(pelicula -> pelicula.getTitulo()).toList();
+    }
+
+    public int getduraciontotal () {
+        int suma = 0;
+        for (int i = 0 ; i < contenido.size() ; i ++) {
+            suma =  suma + contenido.get(i).getDuracion();
+        }
+        return suma;
+    }
+
+    public int getduracionplatzi () {
+        return contenido.stream().mapToInt(Pelicula::getDuracion).sum();
+    }
+
     //GETTERS
     public String getNombre(){
         return  nombre;
