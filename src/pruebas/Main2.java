@@ -1,24 +1,24 @@
 package pruebas;
 
+import platzi.play.contenido.Genero;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main2 {
     public static void main(String[] args) {
-        ArrayList<String>contenedor_nombres = new ArrayList<>();
-        contenedor_nombres.add("David");
-        contenedor_nombres.add(("Sebastian"));
-        contenedor_nombres.add("Kevin");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese la ciudad de residencia: ");
+        String ciudad_residencia = sc.nextLine();
+        Ciudades ciudadenum = Ciudades.valueOf(ciudad_residencia);
 
-        for (String contenedorNombre : contenedor_nombres) {
-            System.out.println(contenedorNombre);
-        }
+        Persona persona = new Persona("David", "Pulgarin", "Colombiano", ciudadenum, 23);
+        System.out.println(persona.mostrar_informacion());
 
-        ArrayList<String> nombresciudades = new ArrayList<>();
-        nombresciudades.add("Medellin");
-        nombresciudades.add("Bogota");
 
-        System.out.println(nombresciudades);
+
+
 
 
 
