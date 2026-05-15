@@ -7,13 +7,13 @@ public class Pelicula {
     private String titulo;
     private String descripcion;
     private int duracion;
-    private String genero;
+    private Genero genero;
     private LocalDate fecha_estreno;
     private double calificacion;
     private boolean disponible;
 
 
-    public Pelicula (String titulo, String descripcion, int duracion, String genero, LocalDate fecha_estreno, double calificacion, boolean disponible){
+    public Pelicula (String titulo, String descripcion, int duracion, Genero genero, LocalDate fecha_estreno, double calificacion, boolean disponible){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -63,7 +63,7 @@ public class Pelicula {
         return duracion;
     }
 
-    public String getGenero() {
+    public Genero getGenero() {
         return genero;
     }
 

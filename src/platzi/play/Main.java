@@ -1,6 +1,7 @@
 //MAIN
 package platzi.play;
 
+import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
 import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
@@ -32,21 +33,18 @@ public class Main {
         Usuario usuario =  new Usuario("David", "dpulgarin437@gmail.com");
         System.out.println(nombre_plataforma + "🍿 v" + VERSION);
 
-        Pelicula pelicula1 = new Pelicula("Harry potter", "es de magia", 200, "Fantasia",LocalDate.now(), 4.5, true);
-        Pelicula pelicula2 = new Pelicula("Hombre Araña", "es de accion", 220, "Accion",LocalDate.now(), 5, true);
-        Pelicula pelicula3 = new Pelicula("titanic", "es de amor", 300, "Drama",LocalDate.now(), 4, true);
-        Pelicula pelicula4 = new Pelicula("Avengers", "es de accion", 330, "Accion",LocalDate.now(), 5, true);
+        Pelicula pelicula1 = new Pelicula("Harry potter", "es de magia", 200, Genero.FANTASIA,LocalDate.now(), 4.5, true);
+        Pelicula pelicula2 = new Pelicula("Hombre Araña", "es de accion", 220, Genero.ACCION,LocalDate.now(), 5, true);
+        Pelicula pelicula3 = new Pelicula("titanic", "es de amor", 300, Genero.DRAMA,LocalDate.now(), 4, true);
+        Pelicula pelicula4 = new Pelicula("Avengers", "es de accion", 330, Genero.ACCION,LocalDate.now(), 5, true);
         plataforma.agregar(pelicula1);
         plataforma.agregar(pelicula2);
         plataforma.agregar(pelicula3);
         plataforma.agregar(pelicula4);
 
         //plataforma.getpopulares();
-
-
         //System.out.println(plataforma.getduraciontotal());
         System.out.println("Mas de " + plataforma.getduracionplatzi() + " Minutos de contenido!");
-
 
         while (true) {
             System.out.println(
@@ -66,7 +64,7 @@ public class Main {
             switch (opcion) {
                 case AGREGAR -> {
                     String titulo = ScannerUtils.capturartexto("Cual es el nombre del contenido");
-                    String genero = ScannerUtils.capturartexto("Cual es el genero");
+                    Genero genero = ScannerUtils.capturar_genero("Genero del contenido");
                     int duracion = ScannerUtils.capturarnumero("Cual es la duracion del contenido");
                     double calificacion = ScannerUtils.capturardecimal("Cual es la calificacion del contenido");
                     boolean disponible = true;
@@ -96,7 +94,7 @@ public class Main {
                     }
                 }
                 case BUSCAR_GENERO -> {
-                    String generobuscar = ScannerUtils.capturartexto("Ingrese el genero que quiere buscar");
+                    Genero generobuscar = ScannerUtils.capturar_genero("Ingrese el genero que quiere buscar");
                     System.out.println("Se encontraron " + plataforma.buscarporgenero(generobuscar).size() + " generos de " + generobuscar);
                     for (int i = 0 ; i < plataforma.buscarporgenero(generobuscar).size() ; i ++){
                         System.out.println(plataforma.buscarporgenero(generobuscar).get(i).obtenerFichaTecnica());

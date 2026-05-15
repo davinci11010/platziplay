@@ -1,6 +1,7 @@
 //plataforma
 package platzi.play.plataforma;
 
+import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
 
 import java.util.*;
@@ -55,7 +56,7 @@ public class Plataforma {
     }
 
 
-    public ArrayList<Pelicula> buscarporgenero (String genero){
+    public ArrayList<Pelicula> buscarporgenero (Genero genero){
         ArrayList<Pelicula>listapeliculasgenero = new ArrayList<>();
         for (int i = 0 ; i < contenido.size(); i++){
             if (contenido.get(i).getGenero().equals(genero)){
@@ -76,6 +77,8 @@ public class Plataforma {
         System.out.println("LA PELICULA (" + registronombrepelicula + ") HA SIDO ELIMINADA DE LA BASE DE DATOS🔵");
 
     }
+
+
 
     public void mostrartitulos(){
         for (Pelicula pelicula : contenido) {
