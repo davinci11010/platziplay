@@ -3,6 +3,7 @@ package platzi.play.plataforma;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.exepcion.PeliculaExistenteException;
 
 import java.util.*;
 
@@ -15,7 +16,20 @@ public class Plataforma {
 
     }
     public void agregar(Pelicula elemento) {
-        this.contenido.add(elemento);
+        if (buscarportitulo(elemento.getTitulo()) == true) {
+            throw new PeliculaExistenteException(elemento.getTitulo());
+        } else {
+            contenido.add(elemento);
+        }
+
+    }
+    private boolean buscarportitulo(String titulo){
+        for (int i = 0 ; i < contenido.size(); i ++){
+            if (contenido.get(i).getTitulo().equals(titulo)){
+                return true;
+            }
+        }
+        return false;
     }
 
 
