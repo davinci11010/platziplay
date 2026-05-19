@@ -3,6 +3,7 @@ package platzi.play;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.exepcion.PeliculaExistenteException;
 import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannerUtils;
@@ -70,7 +71,8 @@ public class Main {
                     boolean disponible = true;
                     String descipcion = "Aqui va la descripcion de la pelicula";
 
-                    Pelicula pelicula = new Pelicula(
+                    try {
+                        Pelicula pelicula = new Pelicula(
                             titulo,
                             descipcion,
                             200,
@@ -78,7 +80,11 @@ public class Main {
                             LocalDate.of(2018, 10, 15),
                             calificacion,
                             disponible);
-                    plataforma.agregar(pelicula);
+                        plataforma.agregar(pelicula);
+
+                    } catch (PeliculaExistenteException e) {
+                        System.out.println("\n" + e.getMessage().toUpperCase() + "\n");
+                    }
 
                 }
                 case MOSTRAR_TODO -> {

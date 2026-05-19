@@ -92,8 +92,6 @@ public class Plataforma {
 
     }
 
-
-
     public void mostrartitulos(){
         for (Pelicula pelicula : contenido) {
             System.out.println(pelicula.getTitulo());
@@ -136,9 +134,7 @@ public class Plataforma {
             }
         }
         return pelicula_mayor_duracion;
-
     }
-
     public String get_pelicula_mas_corta () {
         ArrayList<Integer> lista_contenedora_duraciones = new ArrayList<>();
         String pelicula_menor_duracion = "";
