@@ -5,6 +5,7 @@ import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
 import platzi.play.exepcion.PeliculaExistenteException;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 
 public class Plataforma {
@@ -102,16 +103,26 @@ public class Plataforma {
         return contenido.stream().map(pelicula -> pelicula.getTitulo()).toList();
     }
 
-    public void getpopulares(){
-        ArrayList<Pelicula> contenido_copia = (ArrayList<Pelicula>) contenido;
-        ArrayList<Pelicula> lista_organizada = new ArrayList<>();
-        ArrayList<Double> listatemporal = new ArrayList<>();
-        int cantidad_peliculas = contenido_copia.size();
-        for (int i = 0 ; i < contenido.size(); i++){
-            listatemporal.add(contenido.get(i).getCalificacion());
+    public List<Pelicula> getpopulares(){
+        ArrayList<Pelicula> lista_mejores_peliculas = new ArrayList<>();
+        ArrayList<Pelicula> lista_copia_contenido = (ArrayList<Pelicula>) contenido;
+        ArrayList<Double> lista_maximos = new ArrayList<>();
+        for (int i = 0 ; i < lista_copia_contenido.size(); i++) {
+            lista_maximos.add(lista_copia_contenido.get(i).getCalificacion());
         }
-        double mayor = Collections.max(listatemporal);
-        // CONTINUARA
+        int size_lista_copia_contenido = lista_copia_contenido.size();
+        while (size_lista_copia_contenido > 0) {
+            double maximo = Collections.max(lista_maximos);
+            for (int i =  0 ; i < lista_copia_contenido.size(); i++) {
+                if (lista_copia_contenido.get(i).getCalificacion() == maximo) {
+                    lista_mejores_peliculas.add(lista_copia_contenido.get(i));
+                    lista_copia_contenido.remove(lista_copia_contenido.get(i));
+                }
+            }
+            size_lista_copia_contenido -= 1;
+            lista_maximos.remove(maximo);
+        }
+        return lista_mejores_peliculas;
     }
 
     public List<Pelicula> getPopularesplatzi (){

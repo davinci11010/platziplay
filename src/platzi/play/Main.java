@@ -10,6 +10,7 @@ import platzi.play.util.ScannerUtils;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -107,8 +108,13 @@ public class Main {
                     }
                 }
                 case VER_POPULARES -> {
-                    List<Pelicula> contenidoPopulares = plataforma.getPopularesplatzi();
-                    contenidoPopulares.forEach(pelicula -> System.out.println(pelicula.obtenerFichaTecnica()));
+                    ArrayList<Pelicula> mejores = (ArrayList<Pelicula>) plataforma.getpopulares();
+                    for (int i = 0 ; i < mejores.size(); i ++) {
+                        System.out.println(mejores.get(i).obtenerFichaTecnica());
+                    }
+                    
+                    //List<Pelicula> contenidoPopulares = plataforma.getPopularesplatzi();
+                    //contenidoPopulares.forEach(pelicula -> System.out.println(pelicula.obtenerFichaTecnica()));
                 }
                 case VER_PELICULA_MAYOR_DURACION -> {
                     System.out.println(plataforma.get_pelicula_mas_larga());
@@ -128,9 +134,6 @@ public class Main {
 
             }
         }
-
-
-
 
 
 
