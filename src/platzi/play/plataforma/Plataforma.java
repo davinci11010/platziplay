@@ -33,7 +33,6 @@ public class Plataforma {
         return false;
     }
 
-
     public void eliminar(Pelicula elemento){
         this.contenido.remove(elemento);
     }
@@ -94,13 +93,14 @@ public class Plataforma {
     }
 
     public void mostrartitulos(){
-        for (Pelicula pelicula : contenido) {
-            System.out.println(pelicula.getTitulo());
-        }
-    }
+        contenido.forEach(i -> System.out.println("--" + i.getTitulo() + "--"));
 
-    public List<String> mostrartitulosconstream(){
-        return contenido.stream().map(pelicula -> pelicula.getTitulo()).toList();
+    }
+    public void buscartitulostream (String titulo){
+        contenido.stream().
+                filter(i -> i.getTitulo().equals(titulo)).
+                findFirst().
+                orElse(null);
     }
 
     public List<Pelicula> getpopulares(){
@@ -123,6 +123,12 @@ public class Plataforma {
             lista_maximos.remove(maximo);
         }
         return lista_mejores_peliculas;
+    }
+
+    public List<Pelicula> buscarporgenero_stream (String genero) {
+        return contenido.stream()
+                .filter( i -> i.getGenero().equals(genero))
+                .toList();
     }
 
     public List<Pelicula> getPopularesplatzi (){
@@ -162,7 +168,6 @@ public class Plataforma {
         return pelicula_menor_duracion;
 
     }
-
 
     public int getduraciontotal () {
         int suma = 0;

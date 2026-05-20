@@ -106,13 +106,15 @@ public class Main {
                     for (int i = 0 ; i < plataforma.buscarporgenero(generobuscar).size() ; i ++){
                         System.out.println(plataforma.buscarporgenero(generobuscar).get(i).obtenerFichaTecnica());
                     }
+
+
                 }
                 case VER_POPULARES -> {
                     ArrayList<Pelicula> mejores = (ArrayList<Pelicula>) plataforma.getpopulares();
                     for (int i = 0 ; i < mejores.size(); i ++) {
                         System.out.println(mejores.get(i).obtenerFichaTecnica());
                     }
-                    
+
                     //List<Pelicula> contenidoPopulares = plataforma.getPopularesplatzi();
                     //contenidoPopulares.forEach(pelicula -> System.out.println(pelicula.obtenerFichaTecnica()));
                 }
