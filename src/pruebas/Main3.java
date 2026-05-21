@@ -7,11 +7,13 @@ public class Main3 {
                 "Pulgarin",
                 "Colombiano",
                 Ciudades.MEDELLIN,
-                0
+                23
                 );
         Contenedor contenedor = new Contenedor("Universidad de Medellin");
         contenedor.agregar_personas(persona);
-        System.out.println(contenedor.getContenedorPersonas());
+        for (int i = 0; i < contenedor.getContenedorPersonas().size(); i++){
+            System.out.println(contenedor.getContenedorPersonas().get(i).getNombre());
+        }
 
     }
 }
