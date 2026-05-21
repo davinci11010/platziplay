@@ -8,6 +8,7 @@ import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannerUtils;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class Main {
     public static final int VER_PELICULA_MENOR_DURACION = 7;
     public static final int ELIMINAR = 8;
     public static final int SALIR = 9;
+    public static final int PRUEBAS = 10;
 
     public static void main(String[] args) {
         Plataforma plataforma = new Plataforma(nombre_plataforma);
@@ -131,6 +133,13 @@ public class Main {
                 case SALIR -> {
                     System.exit(0);
 
+                }
+                case PRUEBAS -> {
+
+                    Genero generobuscar = ScannerUtils.capturar_genero("Ingrese el genero que quiere buscar");
+                    for (int i = 0 ; i < plataforma.mostarlistaporgenetoconstream(generobuscar).size(); i++){
+                        System.out.println(plataforma.mostarlistaporgenetoconstream(generobuscar).get(i).obtenerFichaTecnica());
+                    }
                 }
 
 

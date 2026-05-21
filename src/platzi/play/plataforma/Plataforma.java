@@ -33,6 +33,13 @@ public class Plataforma {
         return false;
     }
 
+    public List<Pelicula> mostarlistaporgenetoconstream (Genero genero) {
+        var n =  contenido.stream()
+                .filter(i -> i.getGenero().equals(genero))
+                .toList();
+        return n;
+    }
+
     public void eliminar(Pelicula elemento){
         this.contenido.remove(elemento);
     }
@@ -93,8 +100,15 @@ public class Plataforma {
     }
 
     public void mostrartitulos(){
-        contenido.forEach(i -> System.out.println("--" + i.getTitulo() + "--"));
+        contenido.forEach(i -> {
+            System.out.println("--" + i.getTitulo() + "--");
+        });
 
+    }
+
+    public List<String> mostartitulosconmap() {
+        // de cada elemento de contenido agarra el titulo y lo convertis en una lista
+        return contenido.stream().map( i-> i.getTitulo()).toList();
     }
     public void buscartitulostream (String titulo){
         contenido.stream().
@@ -129,6 +143,9 @@ public class Plataforma {
         return contenido.stream()
                 .filter( i -> i.getGenero().equals(genero))
                 .toList();
+    }
+    public int duraciontotalconmap() {
+        return contenido.stream().mapToInt(i -> i.getDuracion()).sum();
     }
 
     public List<Pelicula> getPopularesplatzi (){
