@@ -2,7 +2,7 @@ package pruebas;
 
 import java.time.LocalDate;
 
-public class Persona {
+public class  Persona {
     private String nombre;
     private String apellido;
     private String nacionalidad;
@@ -35,7 +35,7 @@ public class Persona {
         if (edad > 0 && edad <= 120){
             this.edad =  edad;
         } else {
-            throw new RuntimeException("EDAD NO ES VALIDA");
+            throw new PruebasExeptionEdad(this.nombre);
         }
     }
 
