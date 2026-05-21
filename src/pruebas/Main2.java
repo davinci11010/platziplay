@@ -31,5 +31,13 @@ public class Main2 {
         System.out.println(n);
         System.out.println(suma);
 
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese su nombre: ");
+        String nombre = scanner.nextLine();
+        try {
+            int numero = Integer.parseInt(nombre);
+        } catch (NumberFormatException e ) {
+            throw new PruebasExeption();
+        }
+        System.out.println(nombre);
     }}
