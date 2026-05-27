@@ -24,7 +24,6 @@ public class Main4 {
                     System.out.println("Nacionalidad: " + nacionalidad);
                     System.out.println("Edad: " + edad);
                 }
-
             }
 
         } catch (IOException e){

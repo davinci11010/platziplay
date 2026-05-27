@@ -1,6 +1,7 @@
 //MAIN
 package platzi.play;
 
+import platzi.play.contenido.Documental;
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
 import platzi.play.exepcion.PeliculaExistenteException;
@@ -37,6 +38,7 @@ public class Main {
     public static final int CARGARPELICULA = 11;
     public static final int REPRODUCIR = 10;
     public static final int PRUEBAS = 12;
+    public static final int CLASIFICACION_CONTENIDO = 13;
     public static Plataforma plataforma = new Plataforma(nombre_plataforma);
 
 
@@ -78,23 +80,30 @@ public class Main {
 
             switch (opcion) {
                 case AGREGAR -> {
-                    String titulo = ScannerUtils.capturartexto("Cual es el nombre del contenido");
-                    Genero genero = ScannerUtils.capturar_genero("Genero del contenido");
-                    int duracion = ScannerUtils.capturarnumero("Cual es la duracion del contenido");
-                    double calificacion = ScannerUtils.capturardecimal("Cual es la calificacion del contenido");
-                    boolean disponible = true;
-                    String descipcion = "Aqui va la descripcion de la pelicula";
+                    int tipo_numero = ScannerUtils.capturarnumero("Ingrese el tipo de contenido que quieres agregar \n1) Pelicula\n 2)Documental");
 
                     try {
-                        Pelicula pelicula = new Pelicula(
-                            titulo,
-                            descipcion,
-                            200,
-                            genero,
-                            LocalDate.of(2018, 10, 15),
-                            calificacion,
-                            disponible);
-                        plataforma.agregar(pelicula);
+                        if (tipo_numero == 1) {
+                            String titulo = ScannerUtils.capturartexto("Cual es el nombre del contenido");
+                            Genero genero = ScannerUtils.capturar_genero("Genero del contenido");
+                            int duracion = ScannerUtils.capturarnumero("Cual es la duracion del contenido");
+                            double calificacion = ScannerUtils.capturardecimal("Cual es la calificacion del contenido");
+                            boolean disponible = true;
+                            String descipcion = "Aqui va la descripcion de la pelicula";
+                            Pelicula pelicula = new Pelicula(
+                                    titulo,
+                                    descipcion,
+                                    200,
+                                    genero,
+                                    LocalDate.of(2018, 10, 15),
+                                    calificacion,
+                                    disponible);
+                            plataforma.agregar(pelicula);
+
+                        } else {
+                            Documental documental = new Documental("La tierra", "kdsakdnalsd", 60, Genero.CIENCIA_FICCION, LocalDate.now(), 5, true);
+                            plataforma.agregar(documental);
+                        }
 
                     } catch (PeliculaExistenteException e) {
                         System.out.println("\n" + e.getMessage().toUpperCase() + "\n");
@@ -153,6 +162,9 @@ public class Main {
                 case CARGARPELICULA -> {
                     cargarPeliculas();
 
+                }
+                case CLASIFICACION_CONTENIDO -> {
+                    plataforma.clasificar();
                 }
                 case PRUEBAS -> {
 

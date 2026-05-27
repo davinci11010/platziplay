@@ -1,12 +1,15 @@
 //plataforma
 package platzi.play.plataforma;
 
+import platzi.play.contenido.Documental;
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
 import platzi.play.contenido.ResumenContenido;
 import platzi.play.exepcion.PeliculaExistenteException;
 
+import javax.print.Doc;
 import java.awt.image.AreaAveragingScaleFilter;
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class Plataforma {
@@ -183,6 +186,17 @@ public class Plataforma {
         }
         return pelicula_menor_duracion;
 
+    }
+    public void clasificar() {
+        for (int i = 0 ; i < contenido.size(); i++) {
+            System.out.println("---------");
+            if (contenido.get(i) instanceof Documental){
+                System.out.println(contenido.get(i).getTitulo() + " --> Documental");
+            } else if (contenido.get(i) instanceof Pelicula){
+                System.out.println(contenido.get(i).getTitulo() + " --> Pelicula");
+            }
+            System.out.println("---------");
+        }
     }
 
     public int getduraciontotal () {
