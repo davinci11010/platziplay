@@ -1,0 +1,2 @@
+Joker|boof|330|ACCION|2024-06-01|4|True
+Rapunsel|es una pelicula de fantasia|200|FANTASIA|2024-06-02|2|True

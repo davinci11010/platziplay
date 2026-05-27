@@ -3,6 +3,7 @@ package platzi.play.plataforma;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.contenido.ResumenContenido;
 import platzi.play.exepcion.PeliculaExistenteException;
 
 import java.awt.image.AreaAveragingScaleFilter;
@@ -11,9 +12,11 @@ import java.util.*;
 public class Plataforma {
     private String nombre;
     private List<Pelicula> contenido;
+    private Map<Pelicula, Integer> visualizaciones;
     public Plataforma (String nombre) {
         this.nombre = nombre;
         this.contenido = new ArrayList<>();
+        visualizaciones = new HashMap<>();
 
     }
     public void agregar(Pelicula elemento) {
@@ -24,6 +27,15 @@ public class Plataforma {
         }
 
     }
+
+    public void reproducir(Pelicula contenido) {
+        int conteoActual = visualizaciones.getOrDefault(contenido,0);
+        System.out.println(contenido.getTitulo() + " ha sido reproducido: " + conteoActual + " veces");
+        visualizaciones.put(contenido, conteoActual + 1);
+        contenido.reproducir();
+    }
+
+
     private boolean buscarportitulo(String titulo){
         for (int i = 0 ; i < contenido.size(); i ++){
             if (contenido.get(i).getTitulo().equals(titulo)){
@@ -139,19 +151,6 @@ public class Plataforma {
         return lista_mejores_peliculas;
     }
 
-    public List<Pelicula> buscarporgenero_stream (String genero) {
-        return contenido.stream()
-                .filter( i -> i.getGenero().equals(genero))
-                .toList();
-    }
-    public int duraciontotalconmap() {
-        return contenido.stream().mapToInt(i -> i.getDuracion()).sum();
-    }
-
-    public List<Pelicula> getPopularesplatzi (){
-        return contenido.stream().sorted(Comparator.comparingDouble(Pelicula::getCalificacion).reversed()).toList();
-    }
-
     public String get_pelicula_mas_larga () {
         ArrayList<Integer> lista_contenedora_duraciones = new ArrayList<>();
         String pelicula_mayor_duracion = "";
@@ -192,6 +191,25 @@ public class Plataforma {
             suma =  suma + contenido.get(i).getDuracion();
         }
         return suma;
+    }
+    public List<Pelicula> buscarporgenero_stream (String genero) {
+        return contenido.stream()
+                .filter( i -> i.getGenero().equals(genero))
+                .toList();
+    }
+
+    public List<ResumenContenido> getResumenes(){
+        return contenido.stream()
+                .map(contenido -> new ResumenContenido(contenido.getTitulo(), contenido.getDuracion(), contenido.getGenero()))
+                .toList();
+    }
+
+    public int duraciontotalconmap() {
+        return contenido.stream().mapToInt(i -> i.getDuracion()).sum();
+    }
+
+    public List<Pelicula> getPopularesplatzi (){
+        return contenido.stream().sorted(Comparator.comparingDouble(Pelicula::getCalificacion).reversed()).toList();
     }
 
     public int getduracionplatzi () {

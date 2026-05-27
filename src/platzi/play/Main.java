@@ -8,6 +8,11 @@ import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannerUtils;
 
+import javax.swing.text.StyledEditorKit;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.CodeSigner;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.Period;
@@ -29,10 +34,14 @@ public class Main {
     public static final int VER_PELICULA_MENOR_DURACION = 7;
     public static final int ELIMINAR = 8;
     public static final int SALIR = 9;
-    public static final int PRUEBAS = 10;
+    public static final int CARGARPELICULA = 11;
+    public static final int REPRODUCIR = 10;
+    public static final int PRUEBAS = 12;
+    public static Plataforma plataforma = new Plataforma(nombre_plataforma);
+
 
     public static void main(String[] args) {
-        Plataforma plataforma = new Plataforma(nombre_plataforma);
+
 
         Usuario usuario =  new Usuario("David", "dpulgarin437@gmail.com");
         System.out.println(nombre_plataforma + "🍿 v" + VERSION);
@@ -60,7 +69,9 @@ public class Main {
                             "6) Ver Pelicula con mayor duracion" + "\n" +
                             "7) Ver Pelicula con menor duracion" + "\n" +
                             "8) Eliminar" + " \n" +
-                            "9) Salir" + "\n");
+                            "9) Salir" + "\n" +
+                            "10) Reproducir" + " \n" +
+                            "11) Cargar Peliculas");
             int opcion = ScannerUtils.capturarnumero("Ingresa la opcion");
             System.out.println("Opcion elegida: " + opcion);
 
@@ -134,24 +145,57 @@ public class Main {
                     System.exit(0);
 
                 }
-                case PRUEBAS -> {
+                case REPRODUCIR -> {
+                    String nombre = ScannerUtils.capturartexto("Ingrese el nombre de la pelicula ");
 
-                    Genero generobuscar = ScannerUtils.capturar_genero("Ingrese el genero que quiere buscar");
-                    for (int i = 0 ; i < plataforma.mostarlistaporgenetoconstream(generobuscar).size(); i++){
-                        System.out.println(plataforma.mostarlistaporgenetoconstream(generobuscar).get(i).obtenerFichaTecnica());
-                    }
                 }
 
+                case CARGARPELICULA -> {
+                    cargarPeliculas();
+
+                }
+                case PRUEBAS -> {
+
+
+                    Genero generobuscar = ScannerUtils.capturar_genero("Ingrese el genero que quiere buscar");
+                    for (int i = 0; i < plataforma.mostarlistaporgenetoconstream(generobuscar).size(); i++) {
+                        System.out.println(plataforma.mostarlistaporgenetoconstream(generobuscar).get(i).obtenerFichaTecnica());
+                    }
+
+                }
 
             }
         }
 
 
+    }
+    public static void cargarPeliculas(){
+        //SE COLOCA EL TRY CATCH porque hay excepciones que java te obliga a manejar
+        try {
+            List<String> lineas = Files.readAllLines(Paths.get("contenido.txt"));
+            String[] datos = null;
+            for (int i = 0; i < lineas.size(); i++) {
+                datos = lineas.get(i).split("\\|");
+                if (datos.length == 7) {
+                    String titulo = datos[0];
+                    String descripcion = datos[1];
+                    int duracion = Integer.parseInt(datos[2]);
+                    Genero genero = Genero.valueOf(datos[3].toUpperCase());
+                    LocalDate fecha_estreno = LocalDate.parse(datos[4]);
+                    double calificacion = Double.parseDouble(datos[5]);
+                    Boolean disponible = Boolean.parseBoolean(datos[6]);
 
+                    Pelicula pelicula_cargada = new Pelicula(titulo,descripcion,duracion,genero,fecha_estreno,calificacion,disponible);
+                    plataforma.agregar(pelicula_cargada);
+                    System.out.println("--Pelicula cargada con exito--".toUpperCase());
+                }
 
-        //usuario.ver(pelicula);
-
+            }
+        } catch (IOException e) {
+            System.out.println("Error leyendo el archivo");
+        }
 
 
     }
+
 }
