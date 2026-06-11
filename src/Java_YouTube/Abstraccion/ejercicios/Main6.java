@@ -14,7 +14,6 @@ public class Main6 {
         public void move();
     }
 
-
     public static class Car implements Movable{
         @Override
         public void move() {
